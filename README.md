@@ -30,6 +30,8 @@ tested on KDE Neon bionic (Ubuntu 18.04)
 - wxwidget (prefer 3.0 or higher)
 - cmake
 
+### Documentation
+
 - [Original academic paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.108.559&rep=rep1&type=pdf)
 - [Introduction in Chinese](https://ssarcandy.tw/2017/06/26/Coherent-Line-Drawing/)
 
