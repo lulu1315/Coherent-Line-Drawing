@@ -8,7 +8,7 @@ FIND_PACKAGE(wxWidgets REQUIRED)
 INCLUDE(${wxWidgets_USE_FILE})
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
 
-ADD_EXECUTABLE(Coherent-Line-Drawing
+ADD_EXECUTABLE(CLD-gui
 "${PROJECT_SOURCE_DIR}/src/main.cpp" 
 "${PROJECT_SOURCE_DIR}/src/ETF.cpp" 
 "${PROJECT_SOURCE_DIR}/src/CLD.cpp" 
@@ -30,5 +30,5 @@ ADD_EXECUTABLE(CLD-cli
 "${PROJECT_SOURCE_DIR}/include/postProcessing.h" 
 )
 
-TARGET_LINK_LIBRARIES(Coherent-Line-Drawing ${OpenCV_LIBS} ${wxWidgets_LIBRARIES})
+TARGET_LINK_LIBRARIES(CLD-gui ${OpenCV_LIBS} ${wxWidgets_LIBRARIES})
 TARGET_LINK_LIBRARIES(CLD-cli ${OpenCV_LIBS})
