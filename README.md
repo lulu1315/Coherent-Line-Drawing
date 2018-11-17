@@ -15,9 +15,12 @@ tested on KDE Neon bionic (Ubuntu 18.04)
 ## Build
 
 `apt install libwxgtk3.0-dev` (Ubuntu 18.04) 
+
 `mkdir build;cd build`
+
 `cmake`
-`make``
+
+`make`
 
 ### Requirement
 
