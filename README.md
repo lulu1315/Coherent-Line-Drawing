@@ -23,6 +23,7 @@ alt="IMAGE ALT TEXT HERE" width="800" border="10" /></a>
 
 - OpenCV (prefer 3.0 or higher)
 - wxwidget (prefer 3.0 or higher)
+(Ubuntu 18.04) apt install libwxgtk3.0-dev
 - cmake
 
 ### Environment
