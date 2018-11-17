@@ -14,7 +14,9 @@ tested on KDE Neon bionic (Ubuntu 18.04)
 
 ## Build
 
-`apt install libwxgtk3.0-dev` (Ubuntu 18.04) 
+`sudo apt install libwxgtk3.0-dev` (Ubuntu 18.04) 
+
+`cd path/to/Coherent-Line-Drawing`
 
 `mkdir build;cd build`
 
