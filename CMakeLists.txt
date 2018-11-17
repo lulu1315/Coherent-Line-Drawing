@@ -20,4 +20,15 @@ ADD_EXECUTABLE(Coherent-Line-Drawing
 "${PROJECT_SOURCE_DIR}/include/gui.h" 
 )
 
+ADD_EXECUTABLE(CLD-cli
+"${PROJECT_SOURCE_DIR}/src/cli.cpp" 
+"${PROJECT_SOURCE_DIR}/src/ETF.cpp" 
+"${PROJECT_SOURCE_DIR}/src/CLD.cpp" 
+"${PROJECT_SOURCE_DIR}/src/postProcessing.cpp" 
+"${PROJECT_SOURCE_DIR}/include/ETF.h" 
+"${PROJECT_SOURCE_DIR}/include/CLD.h" 
+"${PROJECT_SOURCE_DIR}/include/postProcessing.h" 
+)
+
 TARGET_LINK_LIBRARIES(Coherent-Line-Drawing ${OpenCV_LIBS} ${wxWidgets_LIBRARIES})
+TARGET_LINK_LIBRARIES(CLD-cli ${OpenCV_LIBS})

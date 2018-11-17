@@ -25,7 +25,7 @@ alt="IMAGE ALT TEXT HERE" width="800" border="10" /></a>
 - wxwidget (prefer 3.0 or higher)
 - cmake
 
-apt install libwxgtk3.0-dev (Ubuntu 18.04) 
+>apt install libwxgtk3.0-dev (Ubuntu 18.04) 
 
 ### Environment
 
