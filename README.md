@@ -6,6 +6,7 @@ forked from [SSARCandy/Coherent-Line-Drawing](https://github.com/SSARCandy/Coher
 
 ![test3_montage](./results/test3_montage.png)
 ![test_montage](./results/test_montage.png)
+![test2_montage](./results/test2_montage.png)
 
 ## Modifications
 
