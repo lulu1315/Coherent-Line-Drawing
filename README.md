@@ -4,6 +4,8 @@ An implementation of 'Coherent Line Drawing' by Kang et al, Proc. NPAR 2007 .
 
 forked from [SSARCandy/Coherent-Line-Drawing](https://github.com/SSARCandy/Coherent-Line-Drawing})
 
+![test3_montage](./results/test3_montage.png)
+
 ## Modifications
 
 I added a cli version : CLD-cli to process Coherent Line Drawing without gui
