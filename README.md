@@ -4,9 +4,7 @@ An implementation of 'Coherent Line Drawing' by Kang et al, Proc. NPAR 2007 .
 
 forked from [SSARCandy/Coherent-Line-Drawing](https://github.com/SSARCandy/Coherent-Line-Drawing})
 
-![test3_montage](./results/test3_montage.png)
-![test_montage](./results/test_montage.png)
-![test2_montage](./results/test2_montage.png)
+![test4_montage](./results/test4_montage.png)
 
 ## Modifications
 

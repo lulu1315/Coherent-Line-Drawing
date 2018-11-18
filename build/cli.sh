@@ -1,13 +1,13 @@
 #!/bin/bash
 
-image="test3"
+image="test4"
 ext="png"
 
 #preprocess flowfield kernel 5 10 iterations
-#./CLD-cli ./$image $ext 7 5 2 8 .75 .98 1 1
+#./CLD-cli ./$image $ext 5 10 2 2 .75 .98 .999 1
 
 #run cld on precomputed flowfield
-./CLD-cli ./$image $ext 5 10 3 2 .6 .96 .999 0
+./CLD-cli ./$image $ext 5 10 2 2 .75 .98 .999 0
 
 #use potrace for antialiasing
 potrace -g -o $image\_potrace.pgm $image\_result.pgm
