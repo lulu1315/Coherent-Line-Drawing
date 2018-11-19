@@ -16,6 +16,7 @@ ETF::ETF(Size s) {
 
 void ETF::Init(Size s) {
 	flowField = Mat::zeros(s, CV_32FC3);
+    gradientField = Mat::zeros(s, CV_32FC3);
 	refinedETF = Mat::zeros(s, CV_32FC3);
 	gradientMag = Mat::zeros(s, CV_32FC3);
 }
@@ -43,20 +44,20 @@ void ETF::initial_ETF(string file, Size s) {
 	normalize(gradientMag, gradientMag, 0.0, 1.0, NORM_MINMAX);
 
 	flowField = Mat::zeros(src.size(), CV_32FC3);
-
+    gradientField = Mat::zeros(src.size(), CV_32FC3);
+    
 #pragma omp parallel for
 	for (int i = 0; i < src.rows; i++) {
 		for (int j = 0; j < src.cols; j++) {
 			Vec3f u = grad_x.at<Vec3f>(i, j);
 			Vec3f v = grad_y.at<Vec3f>(i, j);
 
-			flowField.at<Vec3f>(i, j) = normalize(Vec3f(v.val[0], u.val[0], 0));
+			gradientField.at<Vec3f>(i, j) = normalize(Vec3f(v.val[0], u.val[0], 0));
 		}
 	}
 
-	rotateFlow(flowField, flowField, 90);
+	rotateFlow(gradientField, flowField, 90);
 }
-
 
 void ETF::refine_ETF(int kernel) {
 #pragma omp parallel for
@@ -135,6 +136,7 @@ void ETF::rotateFlow(Mat& src, Mat& dst, float theta) {
 }
 
 void ETF::resizeMat(Size s) {
+    resize(gradientField, gradientField, s, 0, 0, CV_INTER_LINEAR);
 	resize(flowField, flowField, s, 0, 0, CV_INTER_LINEAR);
 	resize(refinedETF, refinedETF, s, 0, 0, CV_INTER_LINEAR);
 	resize(gradientMag, gradientMag, s, 0, 0, CV_INTER_LINEAR);

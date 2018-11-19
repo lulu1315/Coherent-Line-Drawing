@@ -61,7 +61,6 @@ void CLD::readSrc(string file) {
 }
 
 
-
 void CLD::genCLD() {
 	Mat originalImg_32FC1 = Mat::zeros(Size(originalImg.cols, originalImg.rows), CV_32FC1);
 	originalImg.convertTo(originalImg_32FC1, CV_32FC1, 1.0 / 255.0);

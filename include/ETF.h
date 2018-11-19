@@ -14,6 +14,7 @@ public:
 
 	cv::Mat gradientMag; // Normalized gradient magnitude
 	cv::Mat flowField;   // edge tangent flow
+	cv::Mat gradientField;   // gradient flow
 	cv::Mat refinedETF;  // ETF after refinement 
 
 private:
