@@ -8,26 +8,26 @@ forked from [SSARCandy/Coherent-Line-Drawing](https://github.com/SSARCandy/Coher
 
 ## Modifications
 
->added command-line versions :
+added command-line versions :
 
->ETF-cli : generate the gradientflow and edgetangentflow vector fields and writes them out as .exr 32bits files.
+`**ETF-cli**` : generate the gradientflow and edgetangentflow vector fields and writes them out as .exr 32bits files.
 
->CLD-cli : process the coherent line drawing using the edgetangentflow from ETF-cli.
+`**CLD-cli**` : process the coherent line drawing using the edgetangentflow from ETF-cli.
 
->The original gui is called CLD-gui
+The original gui is called `CLD-gui`
 
->tested on KDE Neon bionic (Ubuntu 18.04)
+tested on KDE Neon bionic (Ubuntu 18.04)
 
 ## Usage :
 
-`Usage : etf-cli inputfile kernelsize iterations outputgradient outputtangent`
+`Usage : **etf-cli** inputfile kernelsize iterations outputgradient outputtangent`
 
 `       etf-cli /path/to/input/ima.0001.png 5 3 /path/to/result/gradient.0001.exr /path/to/result/tangentflow.0001.exr`
 
 `       will generate gradient.0001.exr and tangentflow.0001.exr from ima.0001.png`
 
 
-`Usage : cld-cli inputfile inputflowfile FDoGiterations sigma_m sigma_c rho tau outputfile`
+`Usage : **cld-cli** inputfile inputflowfile FDoGiterations sigma_m sigma_c rho tau outputfile`
 
 `        cld-cli path/to/ima.0001.png path/to/tangentflow.0001.exr 3 2 1 .98 .98 path/to/cld.0001.png`
 
