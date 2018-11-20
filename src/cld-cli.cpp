@@ -10,10 +10,20 @@ using std::endl;
 
 int main(int argc, char **argv)
 {
+    
+    //minimal usage
+    if (argc == 1)
+        {
+        string usagetxt ="Usage : cld-cli inputfile inputflowfile FDoGiterations sigma_m sigma_c rho tau outputfile";
+        string usagetxt1="        cld-cli path/to/ima.0001.png path/to/tangentflow.0001.exr 3 2 1 .98 .98 path/to/cld.0001.png";
+        string usagetxt2="        will generate cld.0001.png from ima.0001.png and tangentflow.0001.exr";
+        //also save the Line integral convolution in a jpg image
+        cout << usagetxt << "\n" << usagetxt1 << "\n" << usagetxt2 << endl;
+        return 0;
+        }
+        
     //create a cdl object    
     CLD cld;
-    int ETF_kernel=5;
-	int ETF_iteration=0;
     
     char *inputfile = argv[1];
     char *inputflowfile  = argv[2];
@@ -48,7 +58,7 @@ int main(int argc, char **argv)
     
     cv::imwrite(outputfile, cld.result);
     //preview
-    bool withpreview=1;
+    bool withpreview=0;
     if (withpreview)
         {
         cv::namedWindow("cld");

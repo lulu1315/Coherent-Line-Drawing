@@ -8,12 +8,31 @@ forked from [SSARCandy/Coherent-Line-Drawing](https://github.com/SSARCandy/Coher
 
 ## Modifications
 
-I added a cli version : CLD-cli to process Coherent Line Drawing without gui
+>added command-line versions :
 
-The original gui is called CLD-gui
+>ETF-cli : generate the gradientflow and edgetangentflow vector fields and writes them out as .exr 32bits files.
 
-tested on KDE Neon bionic (Ubuntu 18.04)
+>CLD-cli : process the coherent line drawing using the edgetangentflow from ETF-cli.
 
+>The original gui is called CLD-gui
+
+>tested on KDE Neon bionic (Ubuntu 18.04)
+
+## Usage :
+
+`Usage : etf-cli inputfile kernelsize iterations outputgradient outputtangent`
+
+`       etf-cli /path/to/input/ima.0001.png 5 3 /path/to/result/gradient.0001.exr /path/to/result/tangentflow.0001.exr`
+
+`       will generate gradient.0001.exr and tangentflow.0001.exr from ima.0001.png`
+
+
+`Usage : cld-cli inputfile inputflowfile FDoGiterations sigma_m sigma_c rho tau outputfile`
+
+`        cld-cli path/to/ima.0001.png path/to/tangentflow.0001.exr 3 2 1 .98 .98 path/to/cld.0001.png`
+
+`        will generate cld.0001.png from ima.0001.png and tangentflow.0001.exr`
+        
 ## Build
 
 `sudo apt install libwxgtk3.0-dev` (Ubuntu 18.04) 
@@ -39,29 +58,3 @@ tested on KDE Neon bionic (Ubuntu 18.04)
 
 > This paper presents a non-photorealistic rendering technique that
 automatically generates a line drawing from a photograph.
-
-![demo](./demo/4.JPG)
-
-## Workflow(youtube video)
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=48fTXKUTM-8
-" target="_blank"><img src="http://img.youtube.com/vi/48fTXKUTM-8/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="800" border="10" /></a>
-
-### Environment
-
-It should work fine in Windows/Linux/MacOS.  
-But I only tested it in Windows and macOS.
-
-### Pre-Build Version
-
-You can download pre-build version at [here](https://github.com/SSARCandy/Coherent-Line-Drawing/releases).  
-Including Windows and macOS versions.
-
-## Screenshot
-
-![demo](./demo/1.JPG)
-
-![demo](./demo/2.JPG)
-
-![demo](./demo/3.JPG)
