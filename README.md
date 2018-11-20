@@ -45,6 +45,8 @@ tested on KDE Neon bionic (Ubuntu 18.04)
 
 `make`
 
+![test3_montage](./results/test3_montage.png)
+
 ### Requirement
 
 - OpenCV (prefer 3.0 or higher)
