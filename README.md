@@ -20,13 +20,13 @@ tested on KDE Neon bionic (Ubuntu 18.04)
 
 ## Usage :
 
-*   Usage : etf-cli inputfile kernelsize iterations outputgradient outputtangent
+Usage : etf-cli inputfile kernelsize iterations outputgradient outputtangent
 
     etf-cli /path/to/input/ima.0001.png 5 3 /path/to/result/gradient.0001.exr /path/to/result/tangentflow.0001.exr
     will generate gradient.0001.exr and tangentflow.0001.exr from ima.0001.png
 
 
-*   Usage : cld-cli inputfile inputflowfile FDoGiterations sigma_m sigma_c rho tau outputfile
+Usage : cld-cli inputfile inputflowfile FDoGiterations sigma_m sigma_c rho tau outputfile
 
     cld-cli path/to/ima.0001.png path/to/tangentflow.0001.exr 3 2 1 .98 .98 path/to/cld.0001.png
     will generate cld.0001.png from ima.0001.png and tangentflow.0001.exr
