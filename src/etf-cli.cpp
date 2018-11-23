@@ -72,6 +72,8 @@ int main(int argc, char **argv)
     //and write as .exr
     cv::cvtColor(cld.etf.gradientField, cld.etf.gradientField, CV_BGR2RGB);
     cv::imwrite(outputgradient, cld.etf.gradientField);
+    //cv::cvtColor(cld.etf.gradientMag, cld.etf.gradientMag, CV_BGR2RGB);
+    //cv::imwrite(outputgradient, cld.etf.gradientMag);
     cv::cvtColor(cld.etf.flowField, cld.etf.flowField, CV_BGR2RGB);
     cv::imwrite(outputtangent, cld.etf.flowField);
     

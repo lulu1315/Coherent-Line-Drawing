@@ -32,7 +32,7 @@ void ETF::initial_ETF(string file, Size s) {
 	Mat src_n;
 	Mat grad;
 	normalize(src, src_n, 0.0, 1.0, NORM_MINMAX, CV_32FC1);
-	//GaussianBlur(src_n, src_n, Size(51, 51), 0, 0);
+	//GaussianBlur(src_n, src_n, Size(3, 3), 0, 0);
 
 	// Generate grad_x and grad_y
 	Mat grad_x, grad_y, abs_grad_x, abs_grad_y;
@@ -41,7 +41,7 @@ void ETF::initial_ETF(string file, Size s) {
 
 	//Compute gradient
 	magnitude(grad_x, grad_y, gradientMag);
-	normalize(gradientMag, gradientMag, 0.0, 1.0, NORM_MINMAX);
+	normalize(gradientMag, gradientMag, 0.0, 1.0, NORM_MINMAX, CV_32FC1);
 
 	flowField = Mat::zeros(src.size(), CV_32FC3);
     gradientField = Mat::zeros(src.size(), CV_32FC3);

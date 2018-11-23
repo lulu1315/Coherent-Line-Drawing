@@ -1,4 +1,5 @@
 #include "CLD.h"
+#include <algorithm>
 
 using namespace cv;
 
@@ -67,9 +68,9 @@ void CLD::genCLD() {
 
 	gradientDoG(originalImg_32FC1, DoG, this->rho, this->sigma_c);
 	flowDoG(DoG, FDoG, this->sigma_m);
-	//flowDoG(DoG, FDoG, this->sigma_m);
 	
 	binaryThresholding(FDoG, result, this->tau);
+    //otsuThresholding(FDoG, result);
 }
 
 /**
@@ -89,7 +90,7 @@ void CLD::flowDoG(Mat & src, Mat & dst, const double sigma_m) {
 			double gau_m_acc = -gau_m[0] * src.at<float>(y, x);
 			double gau_m_weight_acc = -gau_m[0];
 				
-			// Intergral alone ETF
+			// Integral alone ETF
 			Point2f pos(x, y);
 			for (int step = 0; step < kernel_half; step++) {
 				Vec3f tmp = etf.flowField.at<Vec3f>((int)round(pos.y), (int)round(pos.x));
@@ -110,7 +111,7 @@ void CLD::flowDoG(Mat & src, Mat & dst, const double sigma_m) {
 				if ((int)round(pos.x) < 0 || (int)round(pos.x) > img_w - 1 || (int)round(pos.y) < 0 || (int)round(pos.y) > img_h - 1) break;
 			}
 
-			// Intergral alone inverse ETF
+			// Integral alone inverse ETF
 			pos = Point2f(x, y);
 			for (int step = 0; step < kernel_half; step++) {
 				Vec3f tmp = -etf.flowField.at<Vec3f>((int)round(pos.y), (int)round(pos.x));
@@ -190,10 +191,16 @@ void CLD::binaryThresholding(Mat & src, Mat & dst, const double tau) {
 		for (int x = 0; x < dst.cols; x++) {
 			float H = src.at<float>(y, x);
 			int v = H < tau ? 0 : 255;
-
+            //int v = int(H*255.0);
 			dst.at<uchar>(y, x) = v;
 		}
 	}
+}
+
+void CLD::otsuThresholding(Mat & src, Mat & dst) {
+    //GaussianBlur(src, src, Size(5, 5), 0, 0);
+    src.convertTo(dst,CV_8UC1);
+    cv::threshold(dst, dst, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
 }
 
 /**
@@ -214,4 +221,50 @@ void CLD::combineImage() {
 
 	// Blur a little-bit to let image more smooth
 	GaussianBlur(originalImg, originalImg, Size(3, 3), 0, 0);
+}
+
+/**
+ * mixed warped previous result with current result using consistency as a mask
+ */
+void CLD::combineResultOflow(Mat & warpedimage,Mat & consistencyimage, float weight) {
+    //float weight = .8;
+#pragma omp parallel for
+	for (int y = 0; y < originalImg.rows; y++) {
+		for (int x = 0; x < originalImg.cols; x++) {
+			float W = warpedimage.at<uchar>(y, x);
+            float C = consistencyimage.at<uchar>(y, x)/255.0;
+            float R = result.at<uchar>(y, x);
+            //mix warped previous with result through consistency
+            float O = (W*C) + (R*(1.0-C));
+            //blend result by weight
+            float OO = O*weight +R*(1.0 - weight);
+            //float O = std::min(OO,R);
+            result.at<uchar>(y, x) = OO;
+		}
+	}
+
+	// Blur a little-bit to let image more smooth
+	//GaussianBlur(result, result, Size(3, 3), 0, 0);
+}
+
+/**
+ * mixed warped previous flowfield with current flowfield using consistency as a mask
+ */
+void CLD::combineEtfOflow(Mat & warpedimage,Mat & consistencyimage) {
+#pragma omp parallel for
+	for (int y = 0; y < originalImg.rows; y++) {
+		for (int x = 0; x < originalImg.cols; x++) {
+			Vec3f W = warpedimage.at<Vec3f>(y, x);
+            float C = consistencyimage.at<uchar>(y, x)/255.0;
+            Vec3f R = etf.flowField.at<Vec3f>(y, x);
+            float Ox = (W.val[0]*C) + (R.val[0]*(1.0-C));
+            float Oy = (W.val[1]*C) + (R.val[1]*(1.0-C));
+            float Oz = (W.val[2]*C) + (R.val[2]*(1.0-C));
+            //float O = std::min(OO,R);
+            etf.flowField.at<Vec3f>(y, x) = Vec3f(Ox,Oy,Oz);
+		}
+	}
+
+	// Blur a little-bit to let image more smooth
+	//GaussianBlur(result, result, Size(3, 3), 0, 0);
 }

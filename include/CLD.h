@@ -17,11 +17,14 @@ public:
 	void genCLD();
 	void combineImage();
 	// Perform eq.(6) on each pixel
+    void combineEtfOflow(cv::Mat& warpedimage,cv::Mat& consistencyimage);
+    void combineResultOflow(cv::Mat& warpedimage,cv::Mat& consistencyimage, float weight);
 	void gradientDoG(cv::Mat& src, cv::Mat& dst, const double rho, const double sigma_c);
 	// Perform eq.(9) on each pixel
 	void flowDoG(cv::Mat& src, cv::Mat& dst, const double sigma_m);
 	// eq.(10)
 	void binaryThresholding(cv::Mat& src, cv::Mat& dst, const double tau);
+    void otsuThresholding(cv::Mat& src, cv::Mat& dst);
 
 	cv::Mat originalImg;
 	cv::Mat DoG;

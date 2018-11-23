@@ -47,6 +47,17 @@ ADD_EXECUTABLE(ETF-cli
 "${PROJECT_SOURCE_DIR}/include/postProcessing.h" 
 )
 
+ADD_EXECUTABLE(CLD-oflow-cli
+"${PROJECT_SOURCE_DIR}/src/cld-oflow-cli.cpp" 
+"${PROJECT_SOURCE_DIR}/src/ETF.cpp" 
+"${PROJECT_SOURCE_DIR}/src/CLD.cpp" 
+"${PROJECT_SOURCE_DIR}/src/postProcessing.cpp" 
+"${PROJECT_SOURCE_DIR}/include/ETF.h" 
+"${PROJECT_SOURCE_DIR}/include/CLD.h" 
+"${PROJECT_SOURCE_DIR}/include/postProcessing.h" 
+)
+
 TARGET_LINK_LIBRARIES(CLD-gui ${OpenCV_LIBS} ${wxWidgets_LIBRARIES})
 TARGET_LINK_LIBRARIES(CLD-cli ${OpenCV_LIBS})
+TARGET_LINK_LIBRARIES(CLD-oflow-cli ${OpenCV_LIBS})
 TARGET_LINK_LIBRARIES(ETF-cli ${OpenCV_LIBS})
