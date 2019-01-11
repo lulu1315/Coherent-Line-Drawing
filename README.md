@@ -36,7 +36,7 @@ Usage : cld-cli inputfile inputflowfile FDoGiterations sigma_m sigma_c rho tau o
     sudo apt install libwxgtk3.0-dev (Ubuntu 18.04) 
     cd path/to/Coherent-Line-Drawing
     mkdir build;cd build
-    cmake
+    cmake ..
     make
 
 ![test3_montage](./results/test3_montage.png)
